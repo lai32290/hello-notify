@@ -1,10 +1,24 @@
-.hello-notify-item {
+li.hello-notify-item {
     position: fixed;
-    bottom: 0px;
-    right: 50px;
-    transition: all .5s;
+    transition: all .8s;
+    -webkit-animation: hello-notify .8s;
+}
+
+li.hello-notify-clean {
 }
 
 li.hello-notify-message {
     list-style: none;
+    background-color: #69ff85;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+@-webkit-keyframes hello-notify {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }

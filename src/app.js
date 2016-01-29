@@ -8,7 +8,10 @@ mainCtrl.$injector = ['notify'];
 function mainCtrl(notify) {
     var self = this;
 
+    notify.valign = 'top';
+    notify.duration = 1000;
+
     self.add = function() {
-        notify('fjia');
+        notify.notify('fjia');
     };
 }
