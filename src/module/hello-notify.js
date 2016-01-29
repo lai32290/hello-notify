@@ -19,15 +19,17 @@ function notify() {
     self.duration = -1;
 
     self.notify = function (args) {
-        var ul = $("#hello-notify-list");
+        var ul = document.querySelector("#hello-notify-list");
 
-        if (ul.length == 0) {
-            ul = $("<ul id='hello-notify-list'></ul>");
+        if (!ul) {
+            ul = document.createElement("ul");
+            ul.id = "hello-notify-list";
 
-            $("body").append(ul);
+            document.body.appendChild(ul);
         }
 
-        var li = $("<li class='hello-notify-item'></li>");
+        var li = document.createElement("li");
+        li.classList.add('hello-notify-item');
 
         var alignPosition  = self.right;
         var valignPosition = self.bottom;
@@ -57,21 +59,24 @@ function notify() {
                 valignPosition = self.bottom;
         }
 
-        li.css(self.align, alignPosition);
-        li.css(self.valign, valignPosition);
+        li.style[self.align] = alignPosition;
+        li.style[self.valign] = valignPosition;
 
         switch (typeof  args) {
             case 'string':
-                li.addClass('hello-notify-message');
-                li.html(args);
+                li.classList.add('hello-notify-message');
+                li.innerHTML = args;
                 break;
         }
 
-        ul.prepend(li);
+        if(document.querySelectorAll('li.hello-notify-item').length == 0)
+            ul.appendChild(li);
+        else
+            ul.insertBefore(li, ul.querySelector('li:first-child'));
 
         if(self.duration != -1) {
             setTimeout(function() {
-                li.addClass('hello-notify-clean');
+                li.classList.add('hello-notify-clean');
 
                 setTimeout(function () {
                     li.remove();
@@ -82,10 +87,14 @@ function notify() {
         calcPosition();
     };
 
-    function calcPosition() {
-        $('li.hello-notify-item').each(function (k, e) {
-            $(e).css(self.valign, (k + 1) * self.distance);
-        });
+    function calcPosition()
+    {
+        var itens = document.querySelectorAll('li.hello-notify-item');
+
+        for (var i = 1; i <= itens.length; i++)
+        {
+            itens[i - 1].style[self.valign] = (i * self.distance) + "px";
+        }
     }
 
     return self;
