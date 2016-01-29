@@ -1,0 +1,10 @@
+.hello-notify-item {
+    position: fixed;
+    bottom: 0px;
+    right: 50px;
+    transition: all .5s;
+}
+
+li.hello-notify-message {
+    list-style: none;
+}
