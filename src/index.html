@@ -13,5 +13,18 @@
 </head>
 <body ng-controller="mainCtrl as main">
     <button ng-click="main.add()">Add</button>
+
+    Vertical Align:
+    <select ng-model="main.valign">
+        <option value="top">Top</option>
+        <option value="bottom">Bottom</option>
+    </select>
+
+    Align:
+    <select ng-model="main.align">
+        <option value="left">Left</option>
+        <option value="center">Center</option>
+        <option value="right">Right</option>
+    </select>
 </body>
 </html>

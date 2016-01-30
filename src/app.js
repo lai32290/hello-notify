@@ -8,6 +8,9 @@ mainCtrl.$injector = ['notify'];
 function mainCtrl(notify) {
     var self = this;
 
+    self.valign = 'top';
+    self.align = 'right';
+
     notify.valign = 'top';
     notify.duration = 1500;
     notify.animation({
@@ -16,6 +19,9 @@ function mainCtrl(notify) {
     });
 
     self.add = function() {
+        notify.valign = self.valign;
+        notify.align = self.align;
+
         notify.notify('fjia');
     };
 }

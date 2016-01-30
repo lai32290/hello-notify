@@ -9,10 +9,10 @@ function notify() {
     self.align  = 'right';
     self.valign = 'bottom';
 
-    self.top    = 50;
-    self.bottom = 50;
-    self.left   = 50;
-    self.right  = 50;
+    self.top    = '50px';
+    self.bottom = '50px';
+    self.left   = '50px';
+    self.right  = '50px';
 
     self.distance = 50;
     self.duration = -1;
@@ -59,8 +59,9 @@ function notify() {
                 li.style.animation = self.privateConfig.removeAnimationKeyframe + ' ' + self.animationsTime.remove + 'ms';
 
                 setTimeout(function () {
+                    li.style.display = 'none';
                     li.parentNode.removeChild(li);
-                }, self.animationsTime.remove);
+                }, self.animationsTime.remove - 100);
             }, self.duration);
         }
 
@@ -107,11 +108,9 @@ function notify() {
                 valignPosition = self.top;
                 break;
 
-            case 'middle':
-                break;
-
             default:
                 valignPosition = self.bottom;
+                break;
         }
 
         li.style[self.align]  = alignPosition;
