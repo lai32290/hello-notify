@@ -9,7 +9,11 @@ function mainCtrl(notify) {
     var self = this;
 
     notify.valign = 'top';
-    notify.duration = 1000;
+    notify.duration = 1500;
+    notify.animation({
+        remove: 1000
+        , add: 800
+    });
 
     self.add = function() {
         notify.notify('fjia');

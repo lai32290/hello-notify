@@ -1,10 +1,11 @@
 li.hello-notify-item {
     position: fixed;
     transition: all .8s;
-    -webkit-animation: hello-notify .8s;
+    /*-webkit-animation: hello-notify .8s;*/
 }
 
 li.hello-notify-clean {
+    /*-webkit-animation: hello-notify-clean 1s ;*/
 }
 
 li.hello-notify-message {
@@ -20,5 +21,11 @@ li.hello-notify-message {
     }
     to {
         opacity: 1;
+    }
+}
+
+@-webkit-keyframes hello-notify-clean {
+    to {
+        opacity: 0;
     }
 }
