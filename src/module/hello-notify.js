@@ -21,6 +21,7 @@ function notify() {
         remove: 1000
         , add: 800
     };
+    self.animation      = true;
 
     self.privateConfig = {
         showAnimationKeyframe: 'hello-notify'
@@ -46,24 +47,24 @@ function notify() {
                 break;
 
             case 'object':
-                if(args.message != undefined) {
+                if (args.message != undefined) {
                     li.classList.add('hello-notify-message');
                     li.innerHTML = args.message;
                 }
 
-                if(args.template !== undefined) {
-                    var template = document.querySelector(args.template);
-                    li = template.cloneNode(true);
+                if (args.template !== undefined) {
+                    var template     = document.querySelector(args.template);
+                    li               = template.cloneNode(true);
                     li.style.display = 'inline-block';
                 }
 
-                if(args.element !== undefined) {
-                    li = document.querySelector(args.element);
+                if (args.element !== undefined) {
+                    li               = document.querySelector(args.element);
                     li.style.display = 'inline-block';
                 }
 
-                if(args.hoverClass !== undefined) {
-                    li.addEventListener('mouseenter', function (){
+                if (args.hoverClass !== undefined) {
+                    li.addEventListener('mouseenter', function () {
                         li.classList.add(args.hoverClass);
                     });
 
@@ -72,14 +73,14 @@ function notify() {
                     });
                 }
 
-                if(args.click !== undefined) {
-                    li.addEventListener('click', function() {
+                if (args.click !== undefined) {
+                    li.addEventListener('click', function () {
                         args.click(li);
                     });
                 }
 
-                if(args.classes !== undefined) {
-                    var classes = args.classes.split(' ');
+                if (args.class !== undefined) {
+                    var classes = args.class.split(' ');
 
                     classes.forEach(function (cla) {
                         li.classList.add(cla);
@@ -118,22 +119,26 @@ function notify() {
     self.removeAll = function () {
         var itens = getAllItens();
 
-        for(var i = 0; i<itens.length; i++) {
+        for (var i = 0; i < itens.length; i++) {
             self.remove(itens[i]);
         }
     };
-    
-    self.remove = function(item) {
-        var li = item;
 
-        li.style.animation = self.privateConfig.removeAnimationKeyframe + ' ' + self.animationsTime.remove + 'ms';
+    self.remove = function (item) {
+        var li = item;
+        var removeDelay = 0;
+
+        if (self.animation) {
+            li.style.animation = self.privateConfig.removeAnimationKeyframe + ' ' + self.animationsTime.remove + 'ms';
+            removeDelay = self.animationsTime.remove - 100;
+        }
 
         setTimeout(function () {
             li.style.display = 'none';
             li.parentNode.removeChild(li);
 
             calcPosition();
-        }, self.animationsTime.remove - 100);
+        }, removeDelay);
     };
 
     function getAllItens() {
@@ -177,7 +182,17 @@ function notify() {
 
         li.style[self.align]  = alignPosition;
         li.style[self.valign] = valignPosition;
-        li.style.animation    = self.privateConfig.showAnimationKeyframe + ' ' + self.animationsTime.add + 'ms';
+
+        if (self.animation) {
+            li.style.animation = self.privateConfig.showAnimationKeyframe + ' ' + self.animationsTime.add + 'ms';
+
+            li.style.transition = 'top .8s, bottom .8s, right .8s, left .8s';
+
+        }
+        else {
+            li.style.animation  = '';
+            li.style.transition = '';
+        }
     }
 
     return self;

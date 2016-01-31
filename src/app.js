@@ -18,13 +18,16 @@ function mainCtrl(notify) {
         , add: 800
     });
 
+    self.id = 0;
+
     self.add = function() {
+        self.id++;
         notify.valign = self.valign;
         notify.align = self.align;
 
         notify.notify({
             hoverClass: 'elementHover'
-            , classes: 'pointer color_blue'
+            , class: 'pointer color_blue'
             , message: 'Hello World!'
             , click: function(li) {
                 notify.remove(li);

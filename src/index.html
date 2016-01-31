@@ -13,22 +13,22 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body ng-controller="mainCtrl as main">
-    <button ng-click="main.add()">Add</button>
+<button ng-click="main.add()">Add</button>
 
-    Vertical Align:
-    <select ng-model="main.valign">
-        <option value="top">Top</option>
-        <option value="bottom">Bottom</option>
-    </select>
+Vertical Align:
+<select ng-model="main.valign">
+    <option value="top">Top</option>
+    <option value="bottom">Bottom</option>
+</select>
 
-    Align:
-    <select ng-model="main.align">
-        <option value="left">Left</option>
-        <option value="center">Center</option>
-        <option value="right">Right</option>
-    </select>
+Align:
+<select ng-model="main.align">
+    <option value="left">Left</option>
+    <option value="center">Center</option>
+    <option value="right">Right</option>
+</select>
 
-    <button ng-click="main.removeAll()">Remove All</button>
+<button ng-click="main.removeAll()">Remove All</button>
 
 <div id="imTemplate" style="display: none;">
     <button ng-click="main.hitme()">Click me!</button>
