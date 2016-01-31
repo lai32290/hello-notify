@@ -1,0 +1,28 @@
+.hello-notify-item {
+    position: fixed;
+}
+
+li.hello-notify-clean {
+}
+
+li.hello-notify-message {
+    list-style: none;
+    background-color: #69ff85;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+@-webkit-keyframes hello-notify {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes hello-notify-clean {
+    to {
+        opacity: 0;
+    }
+}

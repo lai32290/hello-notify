@@ -1,17 +1,19 @@
 {
   "name": "hello-notify",
   "version": "1.0.0",
-  "description": "",
+  "description": "Hello Notify is a AngularJS module to create flash notify",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "lai32290",
+  "license": "MIT",
   "devDependencies": {
     "bower": "^1.7.7",
     "browser-sync": "^2.11.1",
     "gulp": "^3.9.0",
-    "gulp-clean-dest": "^0.1.1"
+    "gulp-clean-dest": "^0.1.1",
+    "gulp-cssmin": "^0.1.7",
+    "gulp-uglify": "^1.5.1"
   }
 }

@@ -1,0 +1,17 @@
+#imTemplate {
+    background-color: #0f7595;
+    padding: 10px;
+    border-radius: 20px;
+}
+
+.elementHover {
+    color: white;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.color_blue {
+    color: blue;
+}

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="module/hello-notify.js"></script>
+    <script src="app.js"></script>
+
+    <link rel="stylesheet" href="module/hello-notify.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body ng-controller="mainCtrl as main">
+<button ng-click="main.add()">Add</button>
+
+Vertical Align:
+<select ng-model="main.valign">
+    <option value="top">Top</option>
+    <option value="bottom">Bottom</option>
+</select>
+
+Align:
+<select ng-model="main.align">
+    <option value="left">Left</option>
+    <option value="center">Center</option>
+    <option value="right">Right</option>
+</select>
+
+<button ng-click="main.removeAll()">Remove All</button>
+
+<div id="imTemplate" style="display: none;">
+    <button ng-click="main.hitme()">Click me!</button>
+</div>
+</body>
+</html>
