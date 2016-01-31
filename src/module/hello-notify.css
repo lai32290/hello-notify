@@ -1,6 +1,6 @@
-li.hello-notify-item {
+.hello-notify-item {
     position: fixed;
-    transition: all .8s;
+    transition: top .8s, bottom .8s, right .8s, left .8s;
     /*animation-fill-mode: forwards;*/
 }
 

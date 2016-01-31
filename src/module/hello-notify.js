@@ -28,40 +28,77 @@ function notify() {
     };
 
     self.notify = function (args) {
-        var ul = document.querySelector("#hello-notify-list");
+        var list = document.querySelector("#hello-notify-list");
 
-        if (!ul) {
-            ul    = document.createElement("ul");
-            ul.id = "hello-notify-list";
+        if (!list) {
+            list    = document.createElement("div");
+            list.id = "hello-notify-list";
 
-            document.body.appendChild(ul);
+            document.body.appendChild(list);
         }
 
         var li = document.createElement("li");
-        li.classList.add('hello-notify-item');
-
-        setStyle(li);
 
         switch (typeof  args) {
             case 'string':
                 li.classList.add('hello-notify-message');
                 li.innerHTML = args;
                 break;
+
+            case 'object':
+                if(args.message != undefined) {
+                    li.classList.add('hello-notify-message');
+                    li.innerHTML = args.message;
+                }
+
+                if(args.template !== undefined) {
+                    var template = document.querySelector(args.template);
+                    li = template.cloneNode(true);
+                    li.style.display = 'inline-block';
+                }
+
+                if(args.element !== undefined) {
+                    li = document.querySelector(args.element);
+                    li.style.display = 'inline-block';
+                }
+
+                if(args.hoverClass !== undefined) {
+                    li.addEventListener('mouseenter', function (){
+                        li.classList.add(args.hoverClass);
+                    });
+
+                    li.addEventListener('mouseleave', function () {
+                        li.classList.remove(args.hoverClass);
+                    });
+                }
+
+                if(args.click !== undefined) {
+                    li.addEventListener('click', function() {
+                        args.click(li);
+                    });
+                }
+
+                if(args.classes !== undefined) {
+                    var classes = args.classes.split(' ');
+
+                    classes.forEach(function (cla) {
+                        li.classList.add(cla);
+                    });
+                }
         }
 
-        if (document.querySelectorAll('li.hello-notify-item').length == 0)
-            ul.appendChild(li);
+        li.classList.add('hello-notify-item');
+        setStyle(li);
+
+
+        if (document.querySelectorAll('.hello-notify-item').length == 0)
+            list.appendChild(li);
         else
-            ul.insertBefore(li, ul.querySelector('li:first-child'));
+            list.insertBefore(li, list.querySelector(':first-child'));
 
         if (self.duration != -1) {
             setTimeout(function () {
-                li.style.animation = self.privateConfig.removeAnimationKeyframe + ' ' + self.animationsTime.remove + 'ms';
-
-                setTimeout(function () {
-                    li.style.display = 'none';
-                    li.parentNode.removeChild(li);
-                }, self.animationsTime.remove - 100);
+                self.remove(li);
             }, self.duration);
         }
 
@@ -78,8 +115,33 @@ function notify() {
         return self.animationsTime;
     };
 
+    self.removeAll = function () {
+        var itens = getAllItens();
+
+        for(var i = 0; i<itens.length; i++) {
+            self.remove(itens[i]);
+        }
+    };
+    
+    self.remove = function(item) {
+        var li = item;
+
+        li.style.animation = self.privateConfig.removeAnimationKeyframe + ' ' + self.animationsTime.remove + 'ms';
+
+        setTimeout(function () {
+            li.style.display = 'none';
+            li.parentNode.removeChild(li);
+
+            calcPosition();
+        }, self.animationsTime.remove - 100);
+    };
+
+    function getAllItens() {
+        return document.querySelectorAll('.hello-notify-item');
+    }
+
     function calcPosition() {
-        var itens = document.querySelectorAll('li.hello-notify-item');
+        var itens = getAllItens();
 
         for (var i = 1; i <= itens.length; i++) {
             itens[i - 1].style[self.valign] = (i * self.distance) + "px";
