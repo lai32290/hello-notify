@@ -25,7 +25,8 @@ function notify() {
     self.animation = true;
 
     self.animationsTime = {
-        remove: 1000
+        position: 800
+        , remove: 1000
         , add: 800
     };
 
@@ -191,8 +192,16 @@ function notify() {
         style(li, self.valign, valignPosition);
 
         if (self.animation) {
+            var time = self.animationsTime.position;
+            var transition = [
+                'top ' + time + 'ms'
+                , 'bottom ' + time + 'ms'
+                , 'right ' + time + 'ms'
+                , 'left ' + time + 'ms'
+            ].join(',');
+
             style(li, 'animation', self.privateConfig.showAnimationKeyframe + ' ' + self.animationsTime.add + 'ms');
-            style(li, 'transition', 'top .8s, bottom .8s, right .8s, left .8s');
+            style(li, 'transition', transition);
         }
         else {
             style(li, 'animation', '');
