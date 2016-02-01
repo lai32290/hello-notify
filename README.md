@@ -14,7 +14,7 @@ Only **AngularJS**, no more anything.
 
 Include module files in your HTML
 
-```
+```html
 <script src="module/hello-notify.js"></script>
 <link rel="stylesheet" href="module/hello-notify.css">
 ```
@@ -23,7 +23,7 @@ Include module files in your HTML
 
 - Simple use
 
-```
+```javascript
 angular.module('app', ['hello-notify']);
 
 angular.module('app')
@@ -41,14 +41,13 @@ function mainCtrl(notify) {
         notify.notify(message);
     };
 });
-
 ```
 
 - Use template
 
 Maybe you will need custom notify, you can create a template in your HTML, like this:
 
-```
+```html
 <div id="imTemplate" style="display: none;">
     <img src='http://blablabla.com/your-image.jpg'>
     This is a template example
@@ -57,7 +56,7 @@ Maybe you will need custom notify, you can create a template in your HTML, like 
 
 In your javascript:
 
-```
+```javascript
     self.showNotify = function() {
         notify.notify({
             template: '#imTemplate'
@@ -69,7 +68,7 @@ In your javascript:
 
 If you need create a notify where contain Angular baindings, and it's important for you, like binding text, button click, etc, is necessary use **element** property in parameter:
 
-```
+```html
 <div id="imTemplate" style="display: none;">
     Are you sure?
     <button ng-click='main.yes()'>Just Do It!!</button>
@@ -79,7 +78,7 @@ If you need create a notify where contain Angular baindings, and it's important 
 
 In your javascript:
 
-```
+```javascript
     self.showNotify = function() {
         notify.notify({
             element: '#imTemplate'
@@ -89,7 +88,7 @@ In your javascript:
 
 ### Parameters:
 
-```
+```javascript
     notify.notify({
         hoverClass: 'elementHover'
         , class:    'pointer color_blue'
