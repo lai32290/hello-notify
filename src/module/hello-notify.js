@@ -15,7 +15,7 @@ function notify() {
     self.right  = '50px';
 
     self.distance  = 50;
-    self.duration  = -1;
+    self.duration  = 2000;
     self.animation = true;
 
     self.animationsTime = {

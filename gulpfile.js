@@ -48,7 +48,10 @@ gulp.task('watch', [], function () {
         }
     });
 
-    gulp.watch('dest/**/*').on('change', browserSync.reload);
+    gulp.watch('src/**/*').on('change', function () {
+        gulp.start('copy', 'buildCss', 'buildJs');
+        browserSync.reload();
+    });
 });
 
 gulp.task('watchSrc', function () {
@@ -59,4 +62,8 @@ gulp.task('watchSrc', function () {
     });
 
     gulp.watch('src/**/*').on('change', browserSync.reload);
+
+    gulp.watch('src/**/*').on('change', function () {
+
+    });
 });

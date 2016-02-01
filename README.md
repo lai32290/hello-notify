@@ -3,6 +3,8 @@
 ### Description:
 **Hello Notify** is a **AngularJs Module** to create a flash notify.
 
+![Hello Notify](img/simple.gif)
+
 ### Require:
 Only **AngularJS**, no more anything.
 

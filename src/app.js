@@ -42,10 +42,4 @@ function mainCtrl(notify) {
     self.hitme = function() {
         alert('Hello World!');
     };
-
-    setTimeout(self.add, 1000);
-    setTimeout(self.add, 1500);
-    setTimeout(self.add, 2000);
-    setTimeout(self.add, 2500);
-    setTimeout(self.add, 3000);
 }
