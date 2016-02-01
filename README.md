@@ -40,7 +40,7 @@ function mainCtrl(notify) {
         // where message is a string
         notify.notify(message);
     };
-});
+})
 ```
 
 - Use template
