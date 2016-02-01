@@ -136,12 +136,12 @@ function notify() {
         var removeDelay = 0;
 
         if (self.animation) {
-            li.style.animation = self.privateConfig.removeAnimationKeyframe + ' ' + self.animationsTime.remove + 'ms';
+            style(li, 'animation', self.privateConfig.removeAnimationKeyframe + ' ' + self.animationsTime.remove + 'ms');
             removeDelay        = self.animationsTime.remove - 100;
         }
 
         setTimeout(function () {
-            li.style.display = 'none';
+            style(li, 'display', 'nome');
             li.parentNode.removeChild(li);
 
             calcPosition();
@@ -156,7 +156,7 @@ function notify() {
         var itens = getAllItens();
 
         for (var i = 1; i <= itens.length; i++) {
-            itens[i - 1].style[self.valign] = (i * self.distance) + "px";
+            style(itens[i - 1], self.valign, (i * self.distance) + "px");
         }
     }
 
@@ -187,21 +187,30 @@ function notify() {
                 break;
         }
 
-        li.style[self.align]  = alignPosition;
-        li.style[self.valign] = valignPosition;
+        style(li, self.align, alignPosition);
+        style(li, self.valign, valignPosition);
 
         if (self.animation) {
-            var animation = versionConfig.style.animation;
-
-            li.style[animation] = self.privateConfig.showAnimationKeyframe + ' ' + self.animationsTime.add + 'ms';
-
-            li.style.transition = 'top .8s, bottom .8s, right .8s, left .8s';
-
+            style(li, 'animation', self.privateConfig.showAnimationKeyframe + ' ' + self.animationsTime.add + 'ms');
+            style(li, 'transition', 'top .8s, bottom .8s, right .8s, left .8s');
         }
         else {
-            li.style.animation  = '';
-            li.style.transition = '';
+            style(li, 'animation', '');
+            style(li, 'transition', '');
         }
+    }
+
+    function style(li, style, value) {
+        var style = style;
+
+        switch (style) {
+            case 'animation':
+            case 'webkitAnimation':
+                style = li.style.animation !== undefined ? 'animation' : 'webkitAnimation';
+                break;
+        }
+
+        li.style[style] = value;
     }
 
     return self;
