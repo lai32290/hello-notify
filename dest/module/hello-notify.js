@@ -6,6 +6,12 @@ angular.module('hello-notify')
 function notify() {
     var self = this;
 
+    var versionConfig = {
+        style: {
+            animation: document.createElement('div').style.animation !== undefined ? 'animation' : 'webkitAnimation'
+        }
+    };
+
     self.align  = 'right';
     self.valign = 'bottom';
 
@@ -185,7 +191,9 @@ function notify() {
         li.style[self.valign] = valignPosition;
 
         if (self.animation) {
-            li.style.animation = self.privateConfig.showAnimationKeyframe + ' ' + self.animationsTime.add + 'ms';
+            var animation = versionConfig.style.animation;
+
+            li.style[animation] = self.privateConfig.showAnimationKeyframe + ' ' + self.animationsTime.add + 'ms';
 
             li.style.transition = 'top .8s, bottom .8s, right .8s, left .8s';
 
